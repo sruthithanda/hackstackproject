@@ -1,6 +1,8 @@
 "use client"
 import { useSearchParams, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { Suspense } from "react";
+import RegisterForm from "./RegisterForm";
 
 import Link from "next/link"
 import { Header } from "@/components/header"
@@ -12,7 +14,8 @@ import { RegistrationForm } from "@/components/registration-form"
 import type { Hackathon } from "@/lib/hackathons"
 import { AlertCircle, ArrowLeft, LogIn } from "lucide-react"
 
-export default function RegisterPage() {
+export default function RegisterPage() 
+{
   const searchParams = useSearchParams()
   const router = useRouter()
   const { getHackathonById } = useHackathons()
@@ -270,4 +273,9 @@ export default function RegisterPage() {
       </div>
     </div>
   )
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <RegisterForm />
+    </Suspense>
+  );
 }
