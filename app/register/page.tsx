@@ -2,7 +2,6 @@
 import { useSearchParams, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { Suspense } from "react";
-import RegisterForm from "./RegisterForm";
 
 import Link from "next/link"
 import { Header } from "@/components/header"
@@ -23,7 +22,6 @@ export default function RegisterPage()
   const [hackathon, setHackathon] = useState<Hackathon | null>(null)
   const [pageLoading, setPageLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const role = searchParams.get("role");
 
   const hackathonId = searchParams.get("id")
 
@@ -274,9 +272,4 @@ export default function RegisterPage()
       </div>
     </div>
   )
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <RegisterForm />
-    </Suspense>
-  );
 }
