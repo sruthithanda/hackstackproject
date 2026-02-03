@@ -1,7 +1,6 @@
 "use client"
 import { useSearchParams, useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
-import { Suspense } from "react";
+import { useEffect, useState, Suspense } from "react"
 
 import Link from "next/link"
 import { Header } from "@/components/header"
@@ -13,8 +12,7 @@ import { RegistrationForm } from "@/components/registration-form"
 import type { Hackathon } from "@/lib/hackathons"
 import { AlertCircle, ArrowLeft, LogIn } from "lucide-react"
 
-export default function RegisterPage() 
-{
+function RegisterPageContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const { getHackathonById } = useHackathons()
@@ -271,5 +269,25 @@ export default function RegisterPage()
         </div>
       </div>
     </div>
+  )
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="flex items-center justify-center py-24">
+          <div className="space-y-4 text-center">
+            <div className="animate-pulse">
+              <div className="h-8 w-48 bg-muted rounded mx-auto mb-4" />
+              <div className="h-4 w-64 bg-muted rounded mx-auto" />
+            </div>
+          </div>
+        </div>
+      </div>
+    }>
+      <RegisterPageContent />
+    </Suspense>
   )
 }
