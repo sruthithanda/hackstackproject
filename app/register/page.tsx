@@ -23,6 +23,7 @@ export default function RegisterPage()
   const [hackathon, setHackathon] = useState<Hackathon | null>(null)
   const [pageLoading, setPageLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const role = searchParams.get("role");
 
   const hackathonId = searchParams.get("id")
 
